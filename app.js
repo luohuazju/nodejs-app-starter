@@ -7,13 +7,42 @@ const expressStatusMonitor = require('express-status-monitor');
 
 const router = require('./router');
 
-var app = express();
-app.use(bodyParser.urlencoded({extended: false}));
+/**
+ * Create Express server.
+ */
+const app = express();
+
+/**
+ * Express configuration.
+ */
+app.set('host', process.env.HOST || '0.0.0.0');
+app.set('port', process.env.PORT || 8080);
+app.use(expressStatusMonitor());
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', router);
 
-app.set('port', process.env.PORT || 3000);
-app.listen(app.get('port'));
-console.log('Running email scan contextio server on port ' + app.get('port') + ' .');
+/**
+ * Error Handler.
+ */
+if (process.env.NODE_ENV === 'development') {
+    // only use in development
+    app.use(errorHandler());
+} else {
+    app.use((err, req, res, next) => {
+        console.error(err);
+        res.status(500).send('Server Error');
+    });
+}
 
+/**
+ * Start Express server.
+ */
+app.listen(app.get('port'), () => {
+    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+    console.log('  Press CTRL-C to stop\n');
+});
+
+module.exports = app;
