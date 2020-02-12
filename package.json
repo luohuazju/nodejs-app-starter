@@ -1,0 +1,40 @@
+{
+  "name": "nodejs-app-starter",
+  "version": "1.0.0",
+  "description": "A starter for Node.js web applications",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luohuazju/nodejs-app-starter.git"
+  },
+  "license": "MIT",
+  "author": "Yiyi Kang & Carl Luo",
+  "contributors": [
+    "Carl Luo (https://github.com/luohuazju)"
+  ],
+  "scripts": {
+    "start": "node app.js",
+    "test": "nyc mocha --timeout=10000 --exit",
+    "lint": "eslint \"**/*.js\""
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "lodash": "^4.17.15",
+    "chalk": "^3.0.0",
+    "express-status-monitor": "^1.2.8",
+    "errorhandler": "^1.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
+    "sinon": "^8.1.1",
+    "supertest": "^5.0.0-0"
+  },
+  "engines": {
+    "node": ">=10.18.0",
+    "npm": ">=6.13.4"
+  }
+}
