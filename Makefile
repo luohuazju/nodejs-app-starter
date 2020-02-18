@@ -17,7 +17,7 @@ debug:
 clean:
 	docker stop ${NAME}
 	docker rm ${NAME}
-        
+
 logs:
 	docker logs ${NAME}
 
