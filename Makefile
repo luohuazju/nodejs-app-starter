@@ -1,4 +1,4 @@
-IMAGE=lifesize/nodejs-app-starter
+IMAGE=nodejs-app-starter
 TAG=1.0
 NAME=nodejs-app-starter
 REPOSITORY=027622085883.dkr.ecr.us-west-1.amazonaws.com
