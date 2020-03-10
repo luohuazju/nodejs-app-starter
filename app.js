@@ -16,7 +16,7 @@ const app = express();
  * Express configuration.
  */
 app.set('host', process.env.HOST || '0.0.0.0');
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 80);
 app.use(expressStatusMonitor());
 app.use(logger('dev'));
 app.use(bodyParser.json());
