@@ -1,5 +1,5 @@
 IMAGE=nodejs-app-starter
-TAG=1.0
+TAG=1.1
 NAME=nodejs-app-starter
 REPOSITORY=027622085883.dkr.ecr.us-west-1.amazonaws.com
 
