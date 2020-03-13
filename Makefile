@@ -9,10 +9,10 @@ build: docker-context
 	docker build -t $(REPOSITORY)/$(IMAGE):$(TAG) .
 
 run:
-	docker run -d -p 8080:80 -e NODE_ENV=development --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG)
+	docker run -d -p 80:80 -e NODE_ENV=development --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG)
 
 debug:
-	docker run -ti -p 8080:80 -e NODE_ENV=development --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG) /bin/bash
+	docker run -ti -p 80:80 -e NODE_ENV=development --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG) /bin/bash
 
 clean:
 	docker stop ${NAME}
