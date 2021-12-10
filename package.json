@@ -12,9 +12,7 @@
     "Carl Luo (https://github.com/luohuazju)"
   ],
   "scripts": {
-    "start": "node app.js",
-    "test": "nyc mocha --timeout=10000 --exit",
-    "lint": "eslint \"**/*.js\""
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
