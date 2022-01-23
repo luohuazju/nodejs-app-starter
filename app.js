@@ -11,7 +11,7 @@ const router = require('./router');
     const configClient = new NacosConfigClient({
         serverAddr: 'centos7-master',
         username: 'nacos',
-        password: 'xxxxxxxxx'
+        password: 'kaishi'
       });
     
     // get config once
