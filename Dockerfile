@@ -1,9 +1,10 @@
-FROM node:16.0.0-slim
+FROM node:16.0.0-slim as build
 
 WORKDIR /app
-COPY package.json /app/package.json
-RUN npm install --production
 COPY . /app
+RUN npm install --production
 
-CMD ["npm","start"]
+FROM node:16.0.0-alpine
+COPY --from=build /app /
 EXPOSE 80
+CMD ["npm","start"]
