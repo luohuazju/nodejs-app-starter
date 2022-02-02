@@ -3,20 +3,20 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const errorHandler = require('errorhandler');
 const expressStatusMonitor = require('express-status-monitor');
-const NacosConfigClient = require('nacos').NacosConfigClient;
+// const NacosConfigClient = require('nacos').NacosConfigClient;
 const router = require('./router');
 
 (async() => {
 
-    const configClient = new NacosConfigClient({
-        serverAddr: 'centos7-master',
-        username: 'nacos',
-        password: 'kaishi'
-      });
+    // const configClient = new NacosConfigClient({
+    //     serverAddr: 'centos7-master',
+    //     username: 'nacos',
+    //     password: 'kaishi'
+    //   });
     
     // get config once
-    const content= await configClient.getConfig('nodejs.app.starter', 'DEFAULT_GROUP');
-    console.log('getConfig = ', content);
+    // const content= await configClient.getConfig('nodejs.app.starter', 'DEFAULT_GROUP');
+    // console.log('getConfig = ', content);
     
     /**
      * Create Express server.
