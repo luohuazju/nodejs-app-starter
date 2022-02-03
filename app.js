@@ -21,7 +21,7 @@ const ConsulService = require('./service/consul-service');
     
     const consul = new ConsulService();
 
-    const config = await consul.getConfig('epj.config');
+    var config = await consul.getConfig('epj.config');
     console.log('---------config-----------');
     console.log(config);
     console.log('--------------------------');
