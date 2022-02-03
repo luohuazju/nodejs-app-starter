@@ -1,8 +1,7 @@
-module.exports = {
-
-	ping: function(req, res){
+class PingController {
+	async ping(req, res) {
 		res.send("dong");
 		return ;
-	},
-
-};
+	}
+}
+module.exports = PingController;
