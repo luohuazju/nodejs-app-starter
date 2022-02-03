@@ -1,43 +1,45 @@
-module.exports = {
+class AccountController {
 
-	add: function(req, res){
+	async add(req, res){
         const params = req.params;
 		const body = req.body;
         console.log("params = " + JSON.stringify(params));
         console.log("body = " + JSON.stringify(body));
         return ;
-    },
+    }
     
-    update: function(req, res){
+    async update(req, res){
         const params = req.params;
 	    const body = req.body;
         console.log("params = " + JSON.stringify(params));
         console.log("body = " + JSON.stringify(body));
         return ;
-    },
+    }
 
-    delete: function(req, res){
+    async delete(req, res){
         const params = req.params;
 	    const body = req.body;
         console.log("params = " + JSON.stringify(params));
         console.log("body = " + JSON.stringify(body));
         return ;
-    },
+    }
 
-    query: function(req, res){
+    async query(req, res){
         const params = req.params;
 	    const body = req.body;
         console.log("params = " + JSON.stringify(params));
         console.log("body = " + JSON.stringify(body));
         return ;
-    },
+    }
 
-    get: function(req, res){
+    async get(req, res){
         const params = req.params;
 	    const body = req.body;
         console.log("params = " + JSON.stringify(params));
         console.log("body = " + JSON.stringify(body));
         return ;
-    },
+    }
 
-};
+}
+
+module.exports = AccountController;

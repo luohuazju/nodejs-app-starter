@@ -3,10 +3,11 @@ const express = require('express');
 /**
  * controllers (route handlers). 
  */
-const accountController = require('./controller/account-controller');
+const AccountController = require('./controller/account-controller');
 const PingController = require('./controller/ping-controller');
 
 const pingController = new PingController();
+const accountController = new AccountController();
 //routing configuration
 var router = express.Router();
 router.get('/api/v1/ping', pingController.ping);
