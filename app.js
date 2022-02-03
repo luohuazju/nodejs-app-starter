@@ -5,7 +5,7 @@ const errorHandler = require('errorhandler');
 const expressStatusMonitor = require('express-status-monitor');
 // const NacosConfigClient = require('nacos').NacosConfigClient;
 const router = require('./router');
-const consulService = require('./service/consul-service');
+const ConsulService = require('./service/consul-service');
 
 (async() => {
 
@@ -19,7 +19,7 @@ const consulService = require('./service/consul-service');
     // const content= await configClient.getConfig('nodejs.app.starter', 'DEFAULT_GROUP');
     // console.log('getConfig = ', content);
     
-    const consul = consulService();
+    const consul = new ConsulService();
 
     const config = await consul.getConfig('epj.config');
     console.log('---------config-----------');
