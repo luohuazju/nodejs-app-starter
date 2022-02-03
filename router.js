@@ -4,8 +4,9 @@ const express = require('express');
  * controllers (route handlers). 
  */
 const accountController = require('./controller/account-controller');
-const pingController = require('./controller/ping-controller');
+const PingController = require('./controller/ping-controller');
 
+const pingController = new PingController();
 //routing configuration
 var router = express.Router();
 router.get('/api/v1/ping', pingController.ping);

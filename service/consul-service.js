@@ -11,6 +11,7 @@ class ConsulService {
         });
         //register
         this.consul.agent.service.register({
+            id: 'nodejs-app-starter-centos7-worker2-8021',
             name: serviceName,
             address: 'centos7-worker2',
             port: 8021,
@@ -18,6 +19,7 @@ class ConsulService {
                 http: 'http://centos7-worker2:8021/api/v1/ping',
                 interval: '10s',
                 timeout: '5s',
+                deregistercriticalserviceafter: '30s',
             }
         }, function(err, result) {
             if (err) {
