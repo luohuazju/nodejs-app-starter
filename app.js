@@ -25,8 +25,8 @@ const ConsulService = require('./service/consul-service');
     console.log('---------config-----------');
     console.log(config);
     console.log('--------------------------');
-    const watch = await consul.watch('epj.config');
 
+    const watch = await consul.getWatch('epj.config');
     watch.on('change', (data, res) => {
         // console.log('data: ', data);
         config = data.Value;
