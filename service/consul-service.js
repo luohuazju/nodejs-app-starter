@@ -35,6 +35,20 @@ class ConsulService {
         }
         return JSON.parse(result.Value);
     }
+
+    async watch(key) {
+        const watch = this.consul.watch({
+            method: this.consul.kv.get,
+            options: { key: key },
+            backoffFactor: 1000,
+        });
+        watch.on('change', (data, res) => {
+            console.log('data: ', data);
+        });
+        watch.on('error', (err) => {
+            console.log('error: ', err);
+        });
+    }
 }
 
 module.exports = ConsulService;

@@ -25,6 +25,7 @@ const ConsulService = require('./service/consul-service');
     console.log('---------config-----------');
     console.log(config);
     console.log('--------------------------');
+    await consul.watch('epj.config');
     /**
      * Create Express server.
      */
