@@ -23,7 +23,8 @@
     "morgan": "^1.10.0",
     "npm": "^8.3.0",
     "nacos": "^2.2.1",
-    "handlebars": ">=4.7.7"
+    "handlebars": ">=4.7.7",
+    "consul": "^0.40.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
