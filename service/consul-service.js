@@ -2,7 +2,7 @@ const Consul = require('consul');
 
 class ConsulService {
     constructor() {
-        const serviceName = 'nodejs-app-starter';
+        const serviceName = 'nodestarter';
         //new client
         this.consul = new Consul({
             host: 'centos7-master',
@@ -11,7 +11,7 @@ class ConsulService {
         });
         //register
         this.consul.agent.service.register({
-            id: 'nodejs-app-starter-centos7-worker2-8021',
+            id: 'nodestarter-centos7-worker2-8021',
             name: serviceName,
             address: 'centos7-worker2',
             port: 8021,
@@ -20,7 +20,12 @@ class ConsulService {
                 interval: '10s',
                 timeout: '5s',
                 deregistercriticalserviceafter: '30s',
-            }
+            },
+            tags: [
+                "traefik.enable=true",
+                "traefik.http.routers.nodestarter.rule=Host(`nodestarter.sillycat.com`)",
+                "traefik.http.services.nodestarter.loadbalancer.server.port=8021"
+            ]
         }, function(err, result) {
             if (err) {
                 console.error(err);
