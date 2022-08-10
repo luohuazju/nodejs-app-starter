@@ -19,24 +19,24 @@ const ConsulService = require('./service/consul-service');
     // const content= await configClient.getConfig('nodejs.app.starter', 'DEFAULT_GROUP');
     // console.log('getConfig = ', content);
     
-    const consul = new ConsulService();
+    // const consul = new ConsulService();
 
-    var config = await consul.getConfig('epj.config');
-    console.log('---------config-----------');
-    console.log(config);
-    console.log('--------------------------');
+    // var config = await consul.getConfig('epj.config');
+    // console.log('---------config-----------');
+    // console.log(config);
+    // console.log('--------------------------');
 
-    const watch = await consul.getWatch('epj.config');
-    watch.on('change', (data, res) => {
-        // console.log('data: ', data);
-        config = data.Value;
-        console.log('---------update config-----------');
-        console.log(config);
-        console.log('--------------------------');
-    });
-    watch.on('error', (err) => {
-        console.log('error: ', err);
-    });
+    // const watch = await consul.getWatch('epj.config');
+    // watch.on('change', (data, res) => {
+    //     // console.log('data: ', data);
+    //     config = data.Value;
+    //     console.log('---------update config-----------');
+    //     console.log(config);
+    //     console.log('--------------------------');
+    // });
+    // watch.on('error', (err) => {
+    //     console.log('error: ', err);
+    // });
     /**
      * Create Express server.
      */
