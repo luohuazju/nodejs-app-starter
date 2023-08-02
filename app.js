@@ -3,40 +3,30 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const errorHandler = require('errorhandler');
 const expressStatusMonitor = require('express-status-monitor');
-// const NacosConfigClient = require('nacos').NacosConfigClient;
 const router = require('./router');
 const ConsulService = require('./service/consul-service');
 
 (async() => {
-
-    // const configClient = new NacosConfigClient({
-    //     serverAddr: 'centos7-master',
-    //     username: 'nacos',
-    //     password: 'kaishi'
-    //   });
     
-    // get config once
-    // const content= await configClient.getConfig('nodejs.app.starter', 'DEFAULT_GROUP');
-    // console.log('getConfig = ', content);
+    const consul = new ConsulService();
+
+    var config = await consul.getConfig('sillycat.config');
+    console.log('---------config-----------');
+    console.log(config);
+    console.log('--------------------------');
+
+    const watch = await consul.getWatch('sillycat.config');
+    watch.on('change', (data, res) => {
+        // console.log('data: ', data);
+        config = data.Value;
+        console.log('---------update config-----------');
+        console.log(config);
+        console.log('--------------------------');
+    });
+    watch.on('error', (err) => {
+        console.log('error: ', err);
+    });
     
-    // const consul = new ConsulService();
-
-    // var config = await consul.getConfig('epj.config');
-    // console.log('---------config-----------');
-    // console.log(config);
-    // console.log('--------------------------');
-
-    // const watch = await consul.getWatch('epj.config');
-    // watch.on('change', (data, res) => {
-    //     // console.log('data: ', data);
-    //     config = data.Value;
-    //     console.log('---------update config-----------');
-    //     console.log(config);
-    //     console.log('--------------------------');
-    // });
-    // watch.on('error', (err) => {
-    //     console.log('error: ', err);
-    // });
     /**
      * Create Express server.
      */
