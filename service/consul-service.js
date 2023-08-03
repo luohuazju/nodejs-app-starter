@@ -3,35 +3,18 @@ const Consul = require('consul');
 class ConsulService {
     constructor() {
         const serviceName = 'nodestarter';
+        const username = process.env.CONSUL_USER;
+        const password = process.env.CONSUL_PASSWORD;
+        const auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
         //new client
         this.consul = new Consul({
-            host: 'centos7-master',
-            port: 80,
+            host: process.env.CONSUL_HOSTNAME,
+            port: 443,
+            secure: true,
             promisify: true,
-        });
-        //register
-        this.consul.agent.service.register({
-            id: 'nodestarter-centos7-worker2-8021',
-            name: serviceName,
-            address: 'centos7-worker2',
-            port: 8021,
-            check: {
-                http: 'http://centos7-worker2:8021/api/v1/ping',
-                interval: '10s',
-                timeout: '5s',
-                deregistercriticalserviceafter: '30s',
+            headers: {
+                "Authorization" : auth
             },
-            tags: [
-                "traefik.enable=true",
-                "traefik.http.routers.nodestarter.rule=Host(`nodestarter.sillycat.com`)",
-                "traefik.http.services.nodestarter.loadbalancer.server.port=8021"
-            ]
-        }, function(err, result) {
-            if (err) {
-                console.error(err);
-                throw err;
-            }
-            console.log(serviceName + ' register success!');
         });
     }
 

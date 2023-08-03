@@ -9,7 +9,13 @@ build: docker-context
 	docker build -t $(REPOSITORY)/$(IMAGE):$(TAG) .
 
 run:
-	docker run -d -p 8021:80 -e NODE_ENV=production -v /etc/hosts:/etc/hosts --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG)
+	docker run -d -p 8021:80 \
+	-e NODE_ENV=production \
+	-v /etc/hosts:/etc/hosts \
+	-e "CONSUL_HOSTNAME=$(shell echo $$CONSUL_HOSTNAME)" \
+	-e "CONSUL_USER=$(shell echo $$CONSUL_USER)" \
+	-e "CONSUL_PASSWORD=$(shell echo $$CONSUL_PASSWORD)" \
+	--name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG)
 
 debug:
 	docker run -ti -p 8021:80 -e NODE_ENV=development -v /etc/hosts:/etc/hosts --name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG) /bin/bash
