@@ -15,6 +15,8 @@ run:
 	-e "CONSUL_HOSTNAME=$(shell echo $$CONSUL_HOSTNAME)" \
 	-e "CONSUL_USER=$(shell echo $$CONSUL_USER)" \
 	-e "CONSUL_PASSWORD=$(shell echo $$CONSUL_PASSWORD)" \
+	-e "VAULT_ADDR=$(shell echo $$VAULT_ADDR)" \
+	-e "VAULT_TOKEN=$(shell echo $$VAULT_TOKEN)" \
 	--name $(NAME) $(REPOSITORY)/$(IMAGE):$(TAG)
 
 debug:

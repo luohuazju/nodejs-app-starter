@@ -5,15 +5,22 @@ const errorHandler = require('errorhandler');
 const expressStatusMonitor = require('express-status-monitor');
 const router = require('./router');
 const ConsulService = require('./service/consul-service');
+const VaultService = require('./service/vault-service');
 
 (async() => {
     
     const consul = new ConsulService();
+    const vault = new VaultService();
 
     var config = await consul.getConfig('sillycat.config');
     console.log('---------config-----------');
     console.log(config);
     console.log('--------------------------');
+
+    const secret = await vault.getSecret('secret/springboot_application1');
+    console.log('---------secret------------');
+    console.log(secret);
+    console.log('---------------------------');
 
     const watch = await consul.getWatch('sillycat.config');
     watch.on('change', (data, res) => {
